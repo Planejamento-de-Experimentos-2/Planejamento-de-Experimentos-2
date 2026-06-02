@@ -1,0 +1,70 @@
+---
+title: "Lançamento de helicópteros de papel"
+author: "Cristiane Zhu e Júlia Zorzo Ferreira"
+format: html
+editor: visual
+---
+
+# Resumo
+
+Objetivo do experimento, metodologia relevante, e principais resultados.
+
+# Introdução
+
+Motivação do experimento e informações contextuais.
+
+# Materiais e Métodos
+
+## Descrição detalhada de como o experimento foi feito.
+
+## Escolha dos níveis do fator.
+
+## Delineamento utilizado.
+
+## Métodos de casualização.
+
+## Como a unidade experimental foi constituída.
+
+## Como os tratamentos foram aplicados.
+
+## Condições de condução das unidades experimentais.
+
+## Variável resposta medida e como foi medida.
+
+## Tabela dos dados.
+
+## Apresentar o modelo utilizado.
+
+## Tabela de Análise de Variância.
+
+## Testes post-hoc
+
+# Resultados e discussões
+
+ Apresentação e discussão dos achados.
+Deve apresentar o código R, os resultados e a discussão desse
+resultado. A discussão e conclusões devem ser feitas de modo que
+alguém que não seja da área entenda.
+
+Análise Exploratória: Discutir as tendências observadas e
+observando se os pressupostos podem ser atendidos/violados.
+Fazer gráficos apropriados para extrair percepções.
+
+Ajuste do Modelo: Ajustar o modelo linear aos dados.
+
+Apresentação e Interpretação:
+Apresentar e interpretar os coeficientes do modelo.
+Fornecer e discutir o quadro de análise de variância (ANOVA),
+indicando se há efeito significativo do tratamento.
+Apresentar e discutir a equação obtida com o ajuste.
+
+Análise de Resíduos: Apresentar e discutir a análise de resíduos
+para examinar a violação dos pressupostos (normalidade,
+homocedasticidade, violação dos pressupostos (normalidade,
+homocedasticidade, adequação do modelo, observações
+discrepantes, etc.).
+
+# Conclusões
+
+Ressaltar as principais evidências fornecidas pelo
+experimento.
