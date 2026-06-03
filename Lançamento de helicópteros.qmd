@@ -13,21 +13,47 @@ Objetivo do experimento, metodologia relevante, e principais resultados.
 
 Motivação do experimento e informações contextuais.
 
+O objetivo do experimento é avaliar se o comprimento da hélice do helicóptero de papel influencia no tempo de queda. Porém, há uma fonte conhecida de variabilidade que pode influenciar no resultado: a gramatura do papel utilizada na execução dos helicópteros. Assim, foi necessária a utilização de um delineamento em blocos inteiramente casualizado (BIC).
+
+
 # Materiais e Métodos
 
+Para a realização do experimento foram utilizados: <br>
+
+5 tiras de papel de tamanho 3cm x 15cm com gramatura 35g/m² <br>
+5 tiras de papel de tamanho 3cm x 15cm com gramatura 56g/m² <br>
+5 tiras de papel de tamanho 3cm x 15cm com gramatura 75g/m² <br>
+5 tiras de papel de tamanho 3cm x 15cm com gramatura 120g/m² <br>
+            
 ## Descrição detalhada de como o experimento foi feito.
+
+Todos os papéis foram cortados pela mesma pessoa, assim como a execução dos helicópteros.
+
+Os lançamentos foram efetuados em condições controladas, mantendo a mesma altura de lançamento, mesmo ambiente e pessoa. Além disso, todos os helicópteros foram feitos utilizando o mesmo padrão de dobra do papel para garantir que os tratamentos fossem uniformes. 
+
+O tempo foi contado desde o lançamento até sua queda total
 
 ## Escolha dos níveis do fator.
 
+Fator de tratamento: comprimento da hélice
+Níveis: 3cm, 4cm, 5cm, 6cm, 7cm
+
 ## Delineamento utilizado.
 
+Foi adotado o delineamento em blocos completos inteiramente casualizados, uma vez que o fator de interesse é o comprimento da hélice do helicóptero (tratamento), e há uma fonte conhecida de variabilidade , a gramatura do papel utilizado, que pode influenciar no tempo de queda. Dessa forma, a gramatura dos papéis foram considerados como blocos, permitindo controlar essa variabilidade (controle local) e aumentar a precisão na comparação entre os tratamentos. 
+
 ## Métodos de casualização.
+
+Foi realizado um sorteio para determinar a ordem dos blocos (definindo qual gramatura de papel começar, seguida das demais) e também para estabelecer a ordem de aplicação dos tratamentos dentro de cada bloco (definindo a sequência de lançamento dos 5 helicópteros de hélices de tamanhos diferentes).
 
 ## Como a unidade experimental foi constituída.
 
 ## Como os tratamentos foram aplicados.
 
+corte do papel
+
 ## Condições de condução das unidades experimentais.
+
 
 ## Variável resposta medida e como foi medida.
 
