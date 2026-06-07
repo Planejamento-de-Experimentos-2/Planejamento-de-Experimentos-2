@@ -1,9 +1,19 @@
 ---
-title: "Lançamento de helicópteros de papel"
+title: "Lançamento de helicópteros de papel ou Batalha dos Helicópteros?" 
 author: "Cristiane Zhu e Júlia Zorzo Ferreira"
-format: html
+format:
+  html:
+    theme: journal
+    toc: true
+    toc-location: left
+    toc-depth: 3
+    toc-title: "Sumário"
+    number-sections: true
+    smooth-scroll: true
+
 editor: visual
 ---
+
 
 # Resumo
 
@@ -13,38 +23,32 @@ Objetivo do experimento, metodologia relevante, e principais resultados.
 
 Motivação do experimento e informações contextuais.
 
-O objetivo do experimento é avaliar se o comprimento da hélice do helicóptero de papel influencia no tempo de queda. Porém, há uma fonte conhecida de variabilidade que pode influenciar no resultado: a gramatura do papel utilizada na execução dos helicópteros. Assim, foi necessária a utilização de um delineamento em blocos inteiramente casualizado (BIC).
-
+Com motivação baseada na curiosidade em observar o comportamento de helicópteros de papel em queda livre, o objetivo desse experimento foi avaliar se o comprimento da hélice do helicóptero de papel influencia no seu tempo de queda. Porém, há uma fonte conhecida de variabilidade que pode influenciar no resultado: a gramatura do papel utilizada na execução dos helicópteros. Assim, foi necessária a utilização de um delineamento em blocos inteiramente casualizados (BIC). 
 
 # Materiais e Métodos
 
 Para a realização do experimento foram utilizados: <br>
 
-5 tiras de papel de tamanho 3cm x 15cm com gramatura 35g/m² <br>
-5 tiras de papel de tamanho 3cm x 15cm com gramatura 56g/m² <br>
-5 tiras de papel de tamanho 3cm x 15cm com gramatura 75g/m² <br>
-5 tiras de papel de tamanho 3cm x 15cm com gramatura 120g/m² <br>
-            
+5 tiras de papel de tamanho 3cm x 15cm com gramatura 35g/m² <br> 5 tiras de papel de tamanho 3cm x 15cm com gramatura 56g/m² <br> 5 tiras de papel de tamanho 3cm x 15cm com gramatura 75g/m² <br> 5 tiras de papel de tamanho 3cm x 15cm com gramatura 120g/m² <br>
+Lápis <br> Régua <br> Tesoura <br> Cronômetro <br> Escada doméstica 
+
 ## Descrição detalhada de como o experimento foi feito.
 
-Todos os papéis foram cortados pela mesma pessoa, assim como a execução dos helicópteros.
+Uma mesma pessoa realizou a confecção de todos os helicópteros, de forma idêntica, desde o corte dos papéis até a utilização de um mesmo padrão de dobradura, garantindo a uniformidade do experimento. Além disso, a fim de também manter o controle local, uma mesma pessoa conduziu a queda de todos os helicópteros, da mesma forma e de uma mesma altura fixa, sendo inclusive a única a cronometrar o tempo de queda. 
 
-Os lançamentos foram efetuados em condições controladas, mantendo a mesma altura de lançamento, mesmo ambiente e pessoa. Além disso, todos os helicópteros foram feitos utilizando o mesmo padrão de dobra do papel para garantir que os tratamentos fossem uniformes. 
-
-O tempo foi contado desde o lançamento até sua queda total
+Não só isso, o experimento foi realizado em local fechado e idêntico para todos os lançamentos, num mesmo momento de um mesmo dia, sendo ele amplo o suficiente para que os helicópteros não tocassem outras superfícies que não o chão. A escolha da utilização de uma escada justifica-se pela ocorrência de um tempo de queda superior para uma altura superior, evitando imprecisões de marcação de tempo.
 
 ## Escolha dos níveis do fator.
 
-Fator de tratamento: comprimento da hélice
-Níveis: 3cm, 4cm, 5cm, 6cm, 7cm
+Fator de tratamento: comprimento da hélice <br> Níveis: 3cm, 4cm, 5cm, 6cm, 7cm
 
 ## Delineamento utilizado.
 
-Foi adotado o delineamento em blocos completos inteiramente casualizados, uma vez que o fator de interesse é o comprimento da hélice do helicóptero (tratamento), e há uma fonte conhecida de variabilidade , a gramatura do papel utilizado, que pode influenciar no tempo de queda. Dessa forma, a gramatura dos papéis foram considerados como blocos, permitindo controlar essa variabilidade (controle local) e aumentar a precisão na comparação entre os tratamentos. 
+Foi adotado o delineamento em blocos completos inteiramente casualizados, uma vez que o fator de interesse é o comprimento da hélice do helicóptero (tratamento), e há uma fonte conhecida de variabilidade , a gramatura do papel utilizado, que pode influenciar no tempo de queda. Dessa forma, a gramatura dos papéis foram considerados como blocos, permitindo controlar essa variabilidade (controle local) e aumentar a precisão na comparação entre os tratamentos.
 
 ## Métodos de casualização.
 
-Foi realizado um sorteio para determinar a ordem dos blocos (definindo qual gramatura de papel começar, seguida das demais) e também para estabelecer a ordem de aplicação dos tratamentos dentro de cada bloco (definindo a sequência de lançamento dos 5 helicópteros de hélices de tamanhos diferentes).
+Foi realizado um sorteio para determinar a ordem dos blocos (definindo qual a gramatura de papel inicial, seguida das demais) e outro para estabelecer a ordem de aplicação dos tratamentos dentro de cada bloco (definindo a sequência de lançamento dos 5 helicópteros de hélices de tamanhos diferentes para cada gramatura de papel).
 
 ## Como a unidade experimental foi constituída.
 
@@ -54,12 +58,46 @@ corte do papel
 
 ## Condições de condução das unidades experimentais.
 
-
 ## Variável resposta medida e como foi medida.
+A variável resposta medida foi o tempo de queda do helicóptero, medido utilizando um cronômetro. O tempo foi tomado como a diferença entre o momento do primeiro toque do helicóptero no chão e o momento inicial em que o helicóptero se desprende da mão da pessoa que o segura. A unidade considerada para a análise foi milissegundos.
 
 ## Tabela dos dados.
+```{r}
+#| echo: false
+tempo <- c(2210, 2680, 3450, 3460, 3920,
+           2310, 2320, 2340, 2930, 2840,
+           1910, 2270, 2620, 2900, 3770,
+           1040, 1590, 1700, 1810, 1380)
+
+dados <- matrix(tempo,
+                    nrow = 4,
+                    byrow = TRUE)
+
+rownames(dados) <-  c("35g","56g","75g","120g")
+colnames(dados) <-  c("3cm","4cm","5cm","6cm","7cm")
+
+tabela_dados <- as.data.frame(dados)
+```
+
+```{r}
+tabela_dados
+```
+
+```{r}
+library(knitr)
+knitr::kable(
+  tabela_dados,
+  caption = "Tempo de queda dos helicópteros em milissegundos"
+)
+```
 
 ## Apresentar o modelo utilizado.
+
+
+hipóteses: 
+H0: as médias dos tempos (em milissegundos) de queda dos helicópteros são iguais.
+
+H1: pelo menos uma das médias dos tempos (em milissegundos) de queda dos helicópteros é diferente de zero.
 
 ## Tabela de Análise de Variância.
 
@@ -67,30 +105,16 @@ corte do papel
 
 # Resultados e discussões
 
- Apresentação e discussão dos achados.
-Deve apresentar o código R, os resultados e a discussão desse
-resultado. A discussão e conclusões devem ser feitas de modo que
-alguém que não seja da área entenda.
+Apresentação e discussão dos achados. Deve apresentar o código R, os resultados e a discussão desse resultado. A discussão e conclusões devem ser feitas de modo que alguém que não seja da área entenda.
 
-Análise Exploratória: Discutir as tendências observadas e
-observando se os pressupostos podem ser atendidos/violados.
-Fazer gráficos apropriados para extrair percepções.
+Análise Exploratória: Discutir as tendências observadas e observando se os pressupostos podem ser atendidos/violados. Fazer gráficos apropriados para extrair percepções.
 
 Ajuste do Modelo: Ajustar o modelo linear aos dados.
 
-Apresentação e Interpretação:
-Apresentar e interpretar os coeficientes do modelo.
-Fornecer e discutir o quadro de análise de variância (ANOVA),
-indicando se há efeito significativo do tratamento.
-Apresentar e discutir a equação obtida com o ajuste.
+Apresentação e Interpretação: Apresentar e interpretar os coeficientes do modelo. Fornecer e discutir o quadro de análise de variância (ANOVA), indicando se há efeito significativo do tratamento. Apresentar e discutir a equação obtida com o ajuste.
 
-Análise de Resíduos: Apresentar e discutir a análise de resíduos
-para examinar a violação dos pressupostos (normalidade,
-homocedasticidade, violação dos pressupostos (normalidade,
-homocedasticidade, adequação do modelo, observações
-discrepantes, etc.).
+Análise de Resíduos: Apresentar e discutir a análise de resíduos para examinar a violação dos pressupostos (normalidade, homocedasticidade, violação dos pressupostos (normalidade, homocedasticidade, adequação do modelo, observações discrepantes, etc.).
 
 # Conclusões
 
-Ressaltar as principais evidências fornecidas pelo
-experimento.
+Ressaltar as principais evidências fornecidas pelo experimento.
