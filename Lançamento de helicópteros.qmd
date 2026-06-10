@@ -93,11 +93,19 @@ knitr::kable(
 
 ## Apresentar o modelo utilizado.
 
+Hipóteses: <br>
+Para efeito dos tratamentos: <br>
 
-hipóteses: 
-H0: as médias dos tempos (em milissegundos) de queda dos helicópteros são iguais.
+H0: as médias dos tempos (em milissegundos) de queda dos helicópteros são iguais. <br>
 
-H1: pelo menos uma das médias dos tempos (em milissegundos) de queda dos helicópteros é diferente de zero.
+H1: pelo menos uma das médias dos tempos (em milissegundos) de queda dos helicópteros é diferente. <br>
+
+Para efeito dos blocos: <br>
+
+H0: os efeitos das gramaturas de papel para execução dos helicópteros são iguais a 0 . <br>
+
+H1: pelo menos um dos efeitos das grameturas de papel para excução dos helicópteros é diferente de 0.
+
 
 ## Tabela de Análise de Variância.
 
