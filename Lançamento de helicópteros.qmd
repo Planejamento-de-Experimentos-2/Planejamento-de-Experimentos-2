@@ -343,8 +343,6 @@ dados_anova <- data.frame(
 )
 dados_anova
 
-
-
 anova <- aov(tempo ~ tratamento + bloco, dados_anova)
 
 summary(anova)
@@ -395,10 +393,12 @@ Já para o bloco, o valor F0 do bloco calculado foi de 19,13, em relação ao va
 ```
 Com isso, é possível concluir que F0 \> F, já que 19,13 \> 3,49, rejeitando a hipótese nula ao nível de significância de 5%, isto é, há evidências de que pelo menos um dos efeitos do bloco é diferente de zero. Logo, há indícios de efeito significativo da gramatura do papel sob o tempo de queda do helicóptero. Isto é, **a blocagem pela gramatura foi eficaz**.
 
-## Testes post-hoc
+# Testes post-hoc
+
 tukey
 
-# Resultados e discussões
+# Análise Exploratória
+
 ```{r}
 boxplot(tempo ~ tratamento,
         data = dados_anova,
@@ -419,15 +419,15 @@ legend("topleft",
        lty = 1,
        pch = 19)
 ```
-# Exame dos pressupostos do modelo
+# Exame dos pressupostos do modelo e análise dos resíduos
 
 Para verificar se o modelo foi ajustado adequadamente, é necessário checar as suposições que envolvem as variáveis de erro, ou seja, verificar os resíduos. Para tal, são testadas:
 
-### Homogeneidade de variâncias
+## Homogeneidade de variâncias
 
 A verificação da suposição de homogeneidade de variâncias para o erro foi feita a partir dos testes de Bartlett e Levene. <br>
 
-#### Teste de hipótese de Bartlett
+### Teste de hipótese de Bartlett
 
 $$
 H_0:\sigma_1^2=\sigma_2^2=\sigma_3^2=\sigma_4^2=\sigma_5^2
@@ -445,7 +445,7 @@ bartlett.test(residuals(modelo) ~ dados_anova$tratamento)
 
 Dada a significância de 0.05 e o p-valor 0.09416, não rejeitamos a hipótese nula, pois 0.094 \> 0.05. Isto é, **não há evidências de que as variâncias dos erros sejam heterogêneas**. Conclui-se que a suposição de homogeneidade de variâncias foi satisfeita pelo teste de Bartlett.
 
-#### Teste de hipótese de Levene
+### Teste de hipótese de Levene
 
 $$
 H_0:\sigma_1^2=\sigma_2^2=\sigma_3^2=\sigma_4^2=\sigma_5^2
@@ -462,11 +462,14 @@ leveneTest(tempo ~ tratamento, data=dados_anova)
 
 Dada a significância de 0.05 e o p-valor 0.5433, não rejeitamos a hipótese nula, pois 0.5433 \> 0.05. Isto é, **não há evidências de que as variâncias dos erros sejam heterogêneas**. Conclui-se que a suposição de homogeneidade de variâncias também foi satisfeita pelo teste de Levene.
 
-```{r}
-plot(modelo, which = 1)
-```
+Visualmente, a satisfação dessa suposição pode ser verificada com base no Gráfico Scale-Location:
 
-### Normalidade dos resíduos
+```{r}
+plot(modelo, which = 3)
+```
+Observa-se que a linha permanece aproximadamente horizontal ao longo dos valores ajustados, sem evidências de aumento ou redução sistemática da dispersão dos resíduos. Além disso, não foi identificado padrão de funil ou megafone que indique heterocedasticidade. Apesar de algumas observações apresentem resíduos padronizados relativamente elevados, elas não parecem comprometer o padrão geral do gráfico. Assim, a suposição de homocedasticidade é atendida.
+
+## Normalidade dos resíduos
 
 A verificação da suposição de normalidade para o erro foi feita a partir do teste de Shapiro-Wilk, já que a amostra é pequena. <br>
 
@@ -498,26 +501,79 @@ qqnorm(residuals(modelo),
        xlab = "Quantis teóricos",
        ylab = "Quantis amostrais dos resíduos",
         pch = 19, cex = 1.5,          
-       col = "purple")      
+       col = "darkblue")      
 qqline(residuals(modelo),
        col= "#535353",
        lwd = 2)
 
 ```
 
-Ajuste do Modelo: Ajustar o modelo linear aos dados.
+Foi possível verificar no gráfico Q-Q dos resíduos que os pontos se distribuem próximos da reta, sugerindo aderência à suposição de normalidade. Além disso, não há curvaturas fortes que indiquem violação da suposição, apenas é notória a presença de dois pontos afastados nas extremidades, indicando possíveis outliers.
+
+# Análise de Regressão
+
+Foi ajustado um modelo de regressão linear relacionando o tempo de voo da helicóptero ao comprimento da hélice, incorporando o efeito dos blocos (peso).
 
 ```{r}
-modelo <- lm(tempo ~ tratamento + bloco,
-             data = dados_anova)
+dados_reg <- data.frame(
+  bloco = factor(rep(rownames(dados), each = ncol(dados))),
+  comprimento = rep(c(3,4,5,6,7), times = nrow(dados)),
+  tempo = as.vector(t(dados))
+)
 
-summary(modelo)
-anova(modelo)
+modelo_linear <- lm(tempo ~ comprimento + bloco,
+             data = dados_reg)
+resumo <- summary(modelo_linear)
 ```
 
-Apresentação e Interpretação: Apresentar e interpretar os coeficientes do modelo. Fornecer e discutir o quadro de análise de variância (ANOVA), indicando se há efeito significativo do tratamento. Apresentar e discutir a equação obtida com o ajuste.
+## Aderência do modelo
 
-Análise de Resíduos: Apresentar e discutir a análise de resíduos para examinar a violação dos pressupostos (normalidade, homocedasticidade, adequação do modelo, observações discrepantes, etc.).
+A partir do coeficiente de determinação, é possível verificar a aderência do modelo:
+
+```{r}
+resumo$r.squared
+resumo$adj.r.squared
+```
+O resultado foi de 0.8696, indicando que aproximadamente 87% da variabilidade observada na resposta é explicada pelo modelo ajustado.
+
+O coeficiente de determinação ajustado foi de 0.8349, mostrando que, mesmo após penalizar o modelo pelo número de parâmetros estimados, cerca de 83,49% da variação dos dados permanece explicada, **evidenciando boa aderência aos dados experimentais**.
+
+## Significãncia global do modelo
+
+A significância global do modelo foi avaliada pelo teste F da ANOVA da regressão. O p-valor apresentou um resultado muito inferior a 0,05 ao nível de significância de 5%, rejeitando a hipótese nula de que todos os coeficientes associados às variáveis explicativas sejam iguais a zero. 
+
+Portanto, conclui-se que o modelo é **globalmente significativo**, isto é, há evidências de que pelo menos o comprimento ou os blocos contribuem significativamente para explicar a variação observada no tempo de voo.
+
+## Modelo ajustado
+
+O modelo de regressão ajustado foi dado por:
+
+$$
+\hat{Y}
+=
+114
++
+278 \times \text{Comprimento}
++
+1640 \times I_{35g}
++
+1044 \times I_{56g}
++
+1190 \times I_{75g}
+$$
+O coeficiente associado ao comprimento foi estimado em 278,0, indicando que, para cada aumento de 1 cm no comprimento da hélice, o tempo médio de voo aumenta aproximadamente 278 unidades de tempo, mantendo-se constante o peso utilizado.
+
+Além disso, seu p-valor é extremamente baixo, indicando efeito significativo do comprimento da hélice na variável resposta.
+
+Os coeficientes dos blocos também foram estatisticamente significativos (p<0,001). Em comparação ao bloco de referência (120 g), os tempos médios foram maiores em aproximadamente 1640 unidades para o bloco de 35 g, 1044 unidades para o bloco de 56 g e 1190 unidades para o bloco de 75 g.
+
+Esses resultados indicam que o peso utilizado afeta significativamente o tempo de voo e justificam a utilização do delineamento em blocos casualizados.
+
+```{r}
+par(mfrow = c(2,2))
+plot(modelo_linear)
+```
+
 
 # Conclusões
 
