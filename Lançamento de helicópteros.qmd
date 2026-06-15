@@ -1,5 +1,5 @@
 ---
-title: "Batalha dos Helicópteros" 
+title: "Batalha dos Helicópteros 🚁" 
 author: "Cristiane Zhu e Júlia Zorzo Ferreira"
 format:
   html:
@@ -15,8 +15,7 @@ editor: visual
 ---
 
 # Resumo
-
-Objetivo do experimento, metodologia relevante, e principais resultados.
+Este trabalho investigou o efeito do comprimento da hélice no tempo de queda de helicópteros de papel por meio da utilização de um delineamento em blocos completos inteiramente casualizados com cinco tratamentos (3, 4, 5, 6 e 7cm de comprimento de hélice) e quatro blocos definidos pela gramatura do papel (35, 56, 75 e 120 g/m²). A ANOVA indicou efeito significativo do comprimento da hélice e da gramatura sobre o tempo de queda. Os testes post-hoc e o modelo de regressão linear ajustado confirmaram que hélices maiores resultam em também maiores tempos de queda, com aumento estimado de 278ms por centímetro adicional. Os pressupostos do modelo foram atendidos, com dois tempos identificados como pontos influentes de um total de vinte observações.
 
 # Introdução
 
@@ -32,7 +31,7 @@ Para a realização do experimento foram utilizados: <br>
 
 A fim de manter o controle local, uma mesma pessoa conduziu a queda de todos os helicópteros, da mesma forma e de uma mesma altura fixa, sendo inclusive a única a cronometrar o tempo de queda.
 
-Não só isso, o experimento foi realizado em local fechado e idêntico para todos os lançamentos, num mesmo momento de um mesmo dia, sendo ele amplo o suficiente para que os helicópteros não tocassem outras superfícies que não o chão. A escolha da utilização de uma escada justifica-se pela ocorrência de um tempo de queda superior para uma altura superior, evitando imprecisões de marcação de tempo.
+Não só isso, o experimento foi realizado em local fechado e idêntico para todos os lançamentos, num mesmo momento de um mesmo dia, sendo ele amplo o suficiente para que os helicópteros não tocassem outras superfícies que não o chão. A escolha da utilização de uma escada justifica-se pela tentativa de aumentar o tempo de queda de todos os helicópteros dado uma altura considerável para evitar imprecisões de marcação de tempo.
 
 ## Escolha dos níveis do fator
 
@@ -40,7 +39,7 @@ Fator de tratamento: comprimento da hélice <br> Níveis: 3cm, 4cm, 5cm, 6cm, 7c
 
 ## Delineamento utilizado
 
-Foi adotado o delineamento em blocos completos inteiramente casualizados, uma vez que o fator de interesse é o comprimento da hélice do helicóptero (tratamento), e há uma fonte conhecida de variabilidade , a gramatura do papel utilizado, que pode influenciar no tempo de queda. Dessa forma, a gramatura dos papéis foram considerados como blocos, permitindo controlar essa variabilidade (controle local) e aumentar a precisão na comparação entre os tratamentos.
+Foi adotado o delineamento em blocos completos inteiramente casualizados, uma vez que o fator de interesse é o comprimento da hélice do helicóptero (tratamento), e há uma fonte conhecida de variabilidade, a gramatura do papel utilizado, que pode influenciar no tempo de queda. Dessa forma, a gramatura dos papéis foi considerada como bloco, permitindo controlar essa variabilidade (controle local) e aumentar a precisão na comparação entre os tratamentos.
 
 ## Métodos de casualização
 
@@ -52,7 +51,7 @@ A unidade experimental foi constituída por um helicóptero de papel individual,
 
 ## Aplicação dos tratamentos
 
-Os tratamentos foram aplicados durante a confecção dos helicópteros, por meio da variação do comprimento das hélices. Para isso, foram utilizados papéis 3 cm × 15 cm, sendo realizados cortes de modo a produzir helicópteros com comprimentos de hélice iguais a 3 cm, 4 cm, 5 cm, 6 cm e 7 cm e mantendo constante as demais características da estrutura.
+Os tratamentos foram aplicados durante a confecção dos helicópteros, por meio da variação do comprimento das hélices. Para isso, foram utilizados papéis 3 cm × 15 cm, sendo realizados cortes de modo a produzir helicópteros com comprimentos de hélice iguais a 3 cm, 4 cm, 5 cm, 6 cm e 7 cm, e mantendo constante as demais características da estrutura.
 
 ## Condições de condução das unidades experimentais
 
@@ -60,7 +59,7 @@ Uma mesma pessoa realizou a confecção de todos os 20 helicópteros, de forma i
 
 ## Variável resposta medida
 
-A variável resposta medida foi o tempo de queda do helicóptero, medido utilizando um cronômetro. O tempo foi tomado como a diferença entre o momento do primeiro toque do helicóptero no chão e o momento inicial em que o helicóptero se desprende da mão da pessoa que o segura. A unidade considerada para a análise foi milissegundos.
+A variável resposta medida foi o tempo de queda do helicóptero, utilizando-se um cronômetro. O tempo foi tomado como a diferença entre o momento do primeiro toque do helicóptero no chão e o momento inicial em que o helicóptero se desprende da mão da pessoa que o segura. A unidade considerada para a análise foi milissegundos.
 
 
 ## Tabela dos dados
@@ -92,9 +91,11 @@ knitr::kable(
 )
 ```
 
-# Delineamento em blocos completos inteiramente casualizados.
+## Modelo utilizado
+### Delineamento em blocos completos inteiramente casualizados.
 
-Para o experimento, foi utilizado o delineamento em blocos completos inteiramente casualizado (BIC) com cinco tratamentos e quatro blocos, pois há um fator de tratamento (comprimento da hélice) e uma fonte de variação que pode interferir no resultado mas que não queremos avaliar (gramatura do papel. Logo, o modelo matemático para o BIC é:
+Para o experimento, foi utilizado o delineamento em blocos completos inteiramente casualizado (BIC) com cinco tratamentos e quatro blocos, pois há um fator de tratamento (comprimento da hélice) e uma fonte de variação que pode interferir no resultado mas que não deseja-se avaliar (gramatura do papel). 
+Logo, o modelo matemático para o BIC é:
 
 $$ 
 Y_{ij} = \mu + \tau_i + \beta_j + \varepsilon_{ij} 
@@ -121,7 +122,7 @@ $$
 $$
 Assim, são calculados os estimadores dos parâmetros como:
 
-### Média geral
+#### Média geral
 
 $$
 \hat{\mu} = \bar{Y}_{..}
@@ -131,7 +132,7 @@ $$
 (mu <- mean(as.matrix(tabela_dados)))
 ```
 
-### Efeito dos tratamentos
+#### Efeito dos tratamentos
 
 $$
 \hat{\tau}_j = \bar{Y}_{i.} - \bar{Y}_{..}
@@ -146,7 +147,7 @@ tal <- media_individual - mu
                           row.names = NULL))
 ```
 
-### Efeito dos blocos
+#### Efeito dos blocos
 
 $$
 \hat{\beta}_j = \bar{Y}_{j.} - \bar{Y}_{..}
@@ -161,18 +162,18 @@ beta <- media_individual_b - mu
                           row.names = NULL))
 ```
 
-## Cálculos dos componentes da ANOVA.
+#### Cálculos dos componentes da ANOVA.
 
 Utilizando a ANOVA, realizou-se os testes de hipótese a seguir com significância de 5% e demais cálculos:
 
 
-### Hipóteses:
+##### Hipóteses
 
 Para efeito dos tratamentos: <br>
 
-H0: as médias dos tempos (em milissegundos) de queda dos helicópteros são iguais. <br>
+H0: as médias dos tempos de queda dos helicópteros são iguais (em milissegundos). <br>
 
-H1: pelo menos uma das médias dos tempos (em milissegundos) de queda dos helicópteros é diferente. <br>
+H1: pelo menos uma das médias dos tempos de queda dos helicópteros é diferente (em milissegundos). <br>
 
 
 $$
@@ -184,9 +185,9 @@ H_1:\text{pelo menos uma média difere}
 $$
 Para efeito dos blocos: <br>
 
-H0: os efeitos das gramaturas de papel para execução dos helicópteros são iguais a 0 . <br>
+H0: os efeitos das gramaturas de papel para a execução dos helicópteros são iguais a 0 . <br>
 
-H1: pelo menos um dos efeitos das grameturas de papel para excução dos helicópteros é diferente de 0.
+H1: pelo menos um dos efeitos das grameturas de papel para a execução dos helicópteros é diferente de 0.
 
 $$
 H_0:\beta_1=\beta_2=\beta_3=\beta_4=0
@@ -196,10 +197,8 @@ $$
 H_1:\text{pelo menos um dos efeitos é diferente de 0}
 $$
 
-Número de tratamentos, blocos e observações
 
-
-### Graus de liberdade
+##### Graus de liberdade
 
 $$
 \begin{aligned}
@@ -216,20 +215,23 @@ GL_{total} & = N - 1: \text{graus de liberdade total}\\
 $$
 
 ```{r}
-t <- ncol(tabela_dados)   
-b <- nrow(tabela_dados)   
-N <- t*b 
+n_trat <- ncol(tabela_dados)   
+n_bloco <- nrow(tabela_dados)   
+N <- n_trat*n_bloco 
 ```
 
 ```{r}
-(GL_trat <- t - 1)
-(GL_bloco <- b - 1)
-(GL_res <- (t-1)*(b-1))     
+# tratamento
+(GL_trat <- n_trat - 1)
+# bloco
+(GL_bloco <- n_bloco - 1)
+# resíduos
+(GL_res <- (n_trat-1)*(n_bloco-1))    
+# total
 (GL_total <- N - 1)  
-
 ```
 
-### Soma de quadrados
+##### Soma de quadrados
 
 Soma de quadrados total
 $$
@@ -243,7 +245,7 @@ $$
 SQ_{trat} = b\sum_{i=1}^{t}(\bar Y_{i.}-\bar Y_{..})^2
 $$
 ```{r}
-(SQ_trat <- b * sum((media_individual - mu)^2))
+(SQ_trat <- n_bloco * sum((media_individual - mu)^2))
 ```
 
 Soma de quadrados dos blocos
@@ -252,7 +254,7 @@ $$
 SQ_{trat} = t\sum_{i=1}^{b}(\bar Y_{.j}-\bar Y_{..})^2
 $$
 ```{r}
-(SQ_bloco <- t * sum((media_individual_b - mu)^2))
+(SQ_bloco <- n_trat * sum((media_individual_b - mu)^2))
 ```
 Soma de quadrados dos resíduos
 
@@ -264,7 +266,7 @@ $$
 (SQ_res <- SQ_tot - SQ_trat - SQ_bloco)
 ```
 
-### Quadrados médios
+##### Quadrados médios
 
 Quadrado médio do tratamento
 
@@ -285,7 +287,7 @@ $$
 (QM_bloco <- SQ_bloco/GL_bloco)
 ```
 
-### Quadrado médio do resíduo
+Quadrado médio do resíduo
 
 $$
 QM_{res} = \frac{SQ_res}{N-t}
@@ -295,7 +297,7 @@ $$
 (QM_res <- SQ_res/GL_res)
 ```
 
-### Estatística de teste F
+##### Estatística de teste F
 
 Estatística de teste F para o tratamento
 $$
@@ -315,18 +317,19 @@ $$
 ```{r}
 (F0b <- QM_bloco/QM_res)
 ```
-### P-valor
+##### P-valor
 
 P-valor para o tratamento
 $$
-p-valor=P(F_{{GL_{trat}​,GL_{res}}} ​​≥F0​)
+p-valor=P(F_{{GL_{trat},GL_{res}}} ≥F0)
 $$
+
 ```{r}
 (1 - pf(F0, GL_trat, GL_res))
 ```
 P-valor para o bloco
 $$
-p-valor=P(F_{{GL_{bloco}​,GL_{res}}} ​​≥F0​)
+p-valor=P(F_{{GL_{bloco},GL_{res}}} ≥F0)
 $$
 ```{r}
 (1 - pf(F0b, GL_bloco, GL_res))
@@ -339,9 +342,8 @@ Apesar do cálculo de cada termo em separado, é possível calcular diretamente 
 dados_anova <- data.frame(
   bloco = factor(rep(rownames(dados), each = ncol(dados))),
   tratamento = factor(rep(colnames(dados), times = nrow(dados))),
-  tempo = as.vector(t(dados))
+  tempo = as.vector(base::t(dados))
 )
-dados_anova
 
 anova <- aov(tempo ~ tratamento + bloco, dados_anova)
 
@@ -351,29 +353,11 @@ summary(anova)
 ```{r}
 #| echo: false
 tabela_anova <- as.data.frame(summary(anova)[[1]])
-rownames(tabela_anova) <- c(
-"Tratamento",
-"Bloco",
-"Resíduos"
-)
-colnames(tabela_anova) <- c(
-"GL",
-"SQ",
-"QM",
-"F",
-"p_valor"
-)
-
-knitr::kable(tabela_anova
-  ,
-  caption = "Tabela de análise de variâncias"
-)
-
 ```
 
-#### Conclusões
+### Conclusões
 
-Teste de hipótese do tratamento <br>
+#### Teste de hipótese do tratamento <br>
 
 De modo a concluir o teste, após a construção da tabela ANOVA, verificamos o valor F0 do tratamento calculado, 6,22, em relação ao valor tabelado de F, dado por:
 
@@ -384,7 +368,7 @@ De modo a concluir o teste, após a construção da tabela ANOVA, verificamos o 
 Com isso, é possível concluir que F0 \> F, já que 6,22 \> 3,26, rejeitando a hipótese nula ao nível de significância de 5%, isto é, há evidências de que pelo menos uma das médias é diferente das demais. Logo, há indícios de **efeito significativo do comprimento da hélice sob o tempo de queda do helicóptero**.
 
 
-Teste de hipótese do bloco <br>
+#### Teste de hipótese do bloco <br>
 
 Já para o bloco, o valor F0 do bloco calculado foi de 19,13, em relação ao valor tabelado de F, dado por:
 
@@ -393,188 +377,255 @@ Já para o bloco, o valor F0 do bloco calculado foi de 19,13, em relação ao va
 ```
 Com isso, é possível concluir que F0 \> F, já que 19,13 \> 3,49, rejeitando a hipótese nula ao nível de significância de 5%, isto é, há evidências de que pelo menos um dos efeitos do bloco é diferente de zero. Logo, há indícios de efeito significativo da gramatura do papel sob o tempo de queda do helicóptero. Isto é, **a blocagem pela gramatura foi eficaz**.
 
-# Testes post-hoc
+## Testes post-hoc
 
-tukey
+### Teste de Tukey
+O teste de comparações múltiplas de Tukey propõe identificar quais pares de tratamentos diferem entre si. Considera-se um nível de significância de 5%.
 
-# Análise Exploratória
+As hipóteses nulas, portanto, consistem na igualdade de médias par a par:
+$$
+H_0:μi−μi′=0
+$$
+Temos que as hipóteses alternativas são dadas por:
+$$
+H_1: \exists\, i \neq i' \text{ tal que } \mu_i \neq \mu_{i'}
+$$
 
+E a estatística de teste:
+$$
+q = \frac{\bar{Y}_{i.} - \bar{Y}_{i'.}}{\sqrt{QM_{res}/b}}
+$$
+O teste:
 ```{r}
+TukeyHSD(anova, "tratamento")
+```
+Com isso, os resultados indicam que os pares 6cm–3cm (p = 0,024) e 7cm–3cm (p = 0,006) apresentaram diferença estatisticamente significativa. Ou seja, sugere-se que helicópteros com hélices de 6cm e 7cm possuem tempo de queda significativamente maior do que os com hélice de 3cm. Os demais pares não apresentaram evidências suficientes para rejeitar as médias iguais. 
+
+
+### Teste de Student-Newman-Keuls
+O teste de Student-Newman-Keuls (SNK) propõe agrupar os tratamentos em classes homogêneas, clusters, identificando quais diferem entre si.
+Considera-se novamente um nível de significância de 5%.
+
+Da mesma forma,
+As hipóteses nulas consistem na igualdade de médias par a par:
+$$
+H_0: \mu_i - \mu_{i'} = 0
+$$
+E temos que as hipóteses alternativas são dadas por:
+$$
+H_1: \exists\, i \neq i' \text{ tal que } \mu_i \neq \mu_{i'}
+$$
+A estatística de teste:
+$$
+q = \frac{\bar{Y}_{i.} - \bar{Y}_{i'.}}{\sqrt{QM_{res}/b}}
+$$
+O teste:
+```{r}
+library(agricolae)
+snk <- SNK.test(anova, "tratamento", console = TRUE)
+```
+Tabela de grupos:
+```{r}
+#| echo: FALSE
+library(knitr)
+sk_tabela <- snk$groups
+sk_tabela$tratamento <- rownames(sk_tabela)
+rownames(sk_tabela) <- NULL
+
+knitr::kable(
+  sk_tabela[, c("tratamento", "tempo", "groups")],
+  col.names = c("Tratamento", "Média (ms)", "Grupo"),
+  caption = "Grupos homogêneos pelo teste SNK"
+)
+```
+
+Com isso, os resultados agruparam os tratamentos em classes homogêneas: hélices de 7cm e 6cm compõem o grupo de maior tempo de queda (grupo a), enquanto hélices de 4cm e 3cm formam o grupo de menor tempo (grupo c). O comprimento de 5cm ocupa posição intermediária, não diferindo significativamente de nenhum dos demais grupos. Assim como no teste anterior, de Tukey, há evidência de que hélices mais longas proporcionam maior tempo de queda.
+
+
+# Resultados e Discussão
+Os resultados indicaram que o comprimento da hélice influencia significativamente o tempo de queda do helicóptero. Em especial, helicópteros com hélices de 6cm e 7cm demoraram significativamente mais para chegar ao chão do que aqueles com hélices de 3cm, como esperado intuitivamente. 
+A gramatura do papel também se mostrou relevante — papéis mais pesados resultaram em quedas mais rápidas, o que justificou a decisão de controlar esse fator no delineamento do experimento.
+
+
+## Análise Exploratória
+
+### Box-plots dos tempos de queda
+```{r}
+cores <- c("#2C3E7A", "#5B7DB1", "#9B2335", "#C96A75", "#C96A90")
+
 boxplot(tempo ~ tratamento,
         data = dados_anova,
-        xlab = "Tratamento",
-        ylab = "Tempo")
+        xlab = "Comprimento da hélice (cm)",
+        ylab = "Tempo de queda (ms)",
+        main = "Distribuição do tempo de queda por tratamento",
+        col = cores)
+```
+O box-plot revela que, de modo geral, um maior tamanho de hélice possui um maior tempo de queda e também maior variabilidade. 
 
-matplot(t(dados),
+### Gráfico de perfis
+```{r}
+matplot(base::t(dados),
         type = "b",
         pch = 19,
         lty = 1,
-        xlab = "Tratamento",
-        ylab = "Tempo",
-        main = "Análise dos tratamento por bloco")
+        xlab = "Comprimento da hélice (cm) - tratamento",
+        ylab = "Tempo de queda (ms)",
+        main = "Tempo de queda por bloco e tratamento",
+        xaxt = "n",
+        col = 1:4)
+
+axis(1, at = 1:5, labels = colnames(dados))
 
 legend("topleft",
        legend = rownames(dados),
        col = 1:4,
        lty = 1,
-       pch = 19)
+       pch = 19,
+       title = "Gramatura")
 ```
-# Exame dos pressupostos do modelo e análise dos resíduos
+O gráfico de perfis confirma a tendência de que o tempo de queda aumenta com o aumento comprimento da hélice, mas o cruzamento das retas — especialmente do bloco 120g — sugere uma possível interação entre comprimento e gramatura do helicóptero. De forma geral, papéis mais pesados apresentaram menores tempos de queda.
 
-Para verificar se o modelo foi ajustado adequadamente, é necessário checar as suposições que envolvem as variáveis de erro, ou seja, verificar os resíduos. Para tal, são testadas:
+Com base somente na análise exploratória, imagina-se que os pressupostos do modelo serão satisfeitos.
+ 
+# Ajuste do Modelo
 
-## Homogeneidade de variâncias
+## Regressão Linear
 
-A verificação da suposição de homogeneidade de variâncias para o erro foi feita a partir dos testes de Bartlett e Levene. <br>
-
-### Teste de hipótese de Bartlett
-
-$$
-H_0:\sigma_1^2=\sigma_2^2=\sigma_3^2=\sigma_4^2=\sigma_5^2
-$$
-
-$$
-H_1:\text{ pelo menos um } \sigma_i^2 \neq \sigma_j^2 \text{ ,i =1,...,t}
-$$
-
-```{r}
-modelo <- aov(tempo ~ tratamento + bloco, data = dados_anova)
-
-bartlett.test(residuals(modelo) ~ dados_anova$tratamento)
-```
-
-Dada a significância de 0.05 e o p-valor 0.09416, não rejeitamos a hipótese nula, pois 0.094 \> 0.05. Isto é, **não há evidências de que as variâncias dos erros sejam heterogêneas**. Conclui-se que a suposição de homogeneidade de variâncias foi satisfeita pelo teste de Bartlett.
-
-### Teste de hipótese de Levene
-
-$$
-H_0:\sigma_1^2=\sigma_2^2=\sigma_3^2=\sigma_4^2=\sigma_5^2
-$$
-
-$$
-H_1:\text{ pelo menos um } \sigma_i^2 \neq \sigma_j^2 \text{ ,i =1,...,t}
-$$
-
-```{r}
-library(car)
-leveneTest(tempo ~ tratamento, data=dados_anova)
-```
-
-Dada a significância de 0.05 e o p-valor 0.5433, não rejeitamos a hipótese nula, pois 0.5433 \> 0.05. Isto é, **não há evidências de que as variâncias dos erros sejam heterogêneas**. Conclui-se que a suposição de homogeneidade de variâncias também foi satisfeita pelo teste de Levene.
-
-Visualmente, a satisfação dessa suposição pode ser verificada com base no Gráfico Scale-Location:
-
-```{r}
-plot(modelo, which = 3)
-```
-Observa-se que a linha permanece aproximadamente horizontal ao longo dos valores ajustados, sem evidências de aumento ou redução sistemática da dispersão dos resíduos. Além disso, não foi identificado padrão de funil ou megafone que indique heterocedasticidade. Apesar de algumas observações apresentem resíduos padronizados relativamente elevados, elas não parecem comprometer o padrão geral do gráfico. Assim, a suposição de homocedasticidade é atendida.
-
-## Normalidade dos resíduos
-
-A verificação da suposição de normalidade para o erro foi feita a partir do teste de Shapiro-Wilk, já que a amostra é pequena. <br>
-
-Teste de hipótese:
-
-$$
-H_0:\ \varepsilon_{ij} \sim N(0,\sigma^2)
-$$
-
-$$
-H_1:\ \varepsilon_{ij} \not\sim N(0,\sigma^2)
-$$
-
-```{r}
-shapiro.test(residuals(anova))
-```
-
-Dada a significância de 0.05 e o p-valor 0.9824, não rejeitamos a hipótese nula, pois 0.9824 \> 0.05. Isto é, **não há evidências de que o erro não segue uma distribuição normal**. Conclui-se que a suposição de normalidade foi satisfeita.
-
-Visualmente, a satisfação dessa suposição pode ser verificada com base no Gráfico Q-Q pela observação da linha retilínea resultante:
-
-```{r}
-#| fig-width: 10
-#| fig-height: 4
-#| out-width: 100%
-par(bg = "#F7F7F7")
-qqnorm(residuals(modelo),
-       main="Gráfico Q-Q dos resíduos para avaliação da normalidade",
-       xlab = "Quantis teóricos",
-       ylab = "Quantis amostrais dos resíduos",
-        pch = 19, cex = 1.5,          
-       col = "darkblue")      
-qqline(residuals(modelo),
-       col= "#535353",
-       lwd = 2)
-
-```
-
-Foi possível verificar no gráfico Q-Q dos resíduos que os pontos se distribuem próximos da reta, sugerindo aderência à suposição de normalidade. Além disso, não há curvaturas fortes que indiquem violação da suposição, apenas é notória a presença de dois pontos afastados nas extremidades, indicando possíveis outliers.
-
-# Análise de Regressão
-
-Foi ajustado um modelo de regressão linear relacionando o tempo de voo da helicóptero ao comprimento da hélice, incorporando o efeito dos blocos (peso).
+Foi ajustado um modelo de regressão linear relacionando o tempo de queda do helicóptero ao comprimento de sua hélice, incorporando o efeito dos blocos (gramatura).
 
 ```{r}
 dados_reg <- data.frame(
   bloco = factor(rep(rownames(dados), each = ncol(dados))),
   comprimento = rep(c(3,4,5,6,7), times = nrow(dados)),
-  tempo = as.vector(t(dados))
+  tempo = as.vector(base::t(dados))
 )
 
-modelo_linear <- lm(tempo ~ comprimento + bloco,
-             data = dados_reg)
+modelo_linear <- lm(tempo ~ comprimento + bloco, data = dados_reg)
 resumo <- summary(modelo_linear)
+resumo
 ```
+O modelo apresentou erro padrão residual de 321ms, indicando a variabilidade média dos resíduos em torno dos valores ajustados. Todos os coeficientes, exceto o intercepto (p = 0,70), foram estatisticamente significativos ao nível de 5%.
+
+## Significância global do modelo
+
+A significância global foi avaliada pelo teste F. O p-valor muito inferior a 0,05 indica que o modelo é **globalmente significativo**, ou seja, pelo menos o comprimento ou a gramatura contribuem para explicar o tempo de queda.
 
 ## Aderência do modelo
-
-A partir do coeficiente de determinação, é possível verificar a aderência do modelo:
 
 ```{r}
 resumo$r.squared
 resumo$adj.r.squared
 ```
-O resultado foi de 0.8696, indicando que aproximadamente 87% da variabilidade observada na resposta é explicada pelo modelo ajustado.
 
-O coeficiente de determinação ajustado foi de 0.8349, mostrando que, mesmo após penalizar o modelo pelo número de parâmetros estimados, cerca de 83,49% da variação dos dados permanece explicada, **evidenciando boa aderência aos dados experimentais**.
+O R² de 0,8696 indica que aproximadamente 87% da variabilidade observada no tempo de queda é explicada pelo modelo. O R² ajustado de 0,8349 confirma a boa aderência mesmo após penalizar pelo número de parâmetros estimados.
 
-## Significãncia global do modelo
 
-A significância global do modelo foi avaliada pelo teste F da ANOVA da regressão. O p-valor apresentou um resultado muito inferior a 0,05 ao nível de significância de 5%, rejeitando a hipótese nula de que todos os coeficientes associados às variáveis explicativas sejam iguais a zero. 
-
-Portanto, conclui-se que o modelo é **globalmente significativo**, isto é, há evidências de que pelo menos o comprimento ou os blocos contribuem significativamente para explicar a variação observada no tempo de voo.
-
-## Modelo ajustado
-
-O modelo de regressão ajustado foi dado por:
+## Modelo ajustado - Equação
 
 $$
-\hat{Y}
-=
-114
-+
-278 \times \text{Comprimento}
-+
-1640 \times I_{35g}
-+
-1044 \times I_{56g}
-+
-1190 \times I_{75g}
+\hat{Y} = 114 + 278 \times \text{Comprimento} + 1640 \times I_{35g} + 1044 \times I_{56g} + 1190 \times I_{75g}
 $$
-O coeficiente associado ao comprimento foi estimado em 278,0, indicando que, para cada aumento de 1 cm no comprimento da hélice, o tempo médio de voo aumenta aproximadamente 278 unidades de tempo, mantendo-se constante o peso utilizado.
+### Interpretação dos coeficientes
+Para cada aumento de 1 cm no comprimento da hélice, o tempo médio de queda aumenta aproximadamente 278 ms, mantendo-se constante a gramatura. Além disso, para um mesmo comprimento de hélice, papéis de 35g resultam em tempos 1640 ms maiores, 56g em 1044 ms maiores e 75g em 1190 ms maiores. O intercepto de 114 ms representa o tempo esperado para comprimento zero no bloco de referência (120g), sem interpretação direta.
 
-Além disso, seu p-valor é extremamente baixo, indicando efeito significativo do comprimento da hélice na variável resposta.
+## ANOVA da Regressão
 
-Os coeficientes dos blocos também foram estatisticamente significativos (p<0,001). Em comparação ao bloco de referência (120 g), os tempos médios foram maiores em aproximadamente 1640 unidades para o bloco de 35 g, 1044 unidades para o bloco de 56 g e 1190 unidades para o bloco de 75 g.
+```{r}
+anova(modelo_linear)
+```
+A tabela ANOVA da regressão indica efeito significativo tanto do comprimento da hélice (tratamento - p < 0,001) quanto da gramatura do papel (p < 0,001). Portanto, ambas as variáveis contribuem significativamente para explicar o tempo de queda dos helicópteros.
 
-Esses resultados indicam que o peso utilizado afeta significativamente o tempo de voo e justificam a utilização do delineamento em blocos casualizados.
+# Análise de Resíduos
 
+## Normalidade
+
+A verificação da suposição de normalidade foi feita pelo teste de Shapiro-Wilk, adequado para amostras pequenas.
+Hipóteses:
+$$
+H_0:\ \varepsilon_{ij} \sim N(0,\sigma^2)
+$$
+$$
+H_1:\ \varepsilon_{ij} \not\sim N(0,\sigma^2)
+$$
+
+```{r}
+shapiro.test(residuals(modelo_linear))
+```
+
+Com p-valor de 0,9672, não há evidências de violação da normalidade dos resíduos ao nível de 5%.
+
+### Gráfico Q-Q
+```{r}
+qqnorm(residuals(modelo_linear),
+       main = "Gráfico Q-Q dos resíduos",
+       xlab = "Quantis teóricos",
+       ylab = "Quantis amostrais dos resíduos",
+       pch = 19, col = "#2C3E7A")
+qqline(residuals(modelo_linear), col = "#535353", lwd = 2)
+```
+
+Os pontos se distribuem próximos à reta, com dois pontos nas extremidades sugerindo possíveis outliers, mas sem comprometer a suposição de normalidade.
+
+## Homocedasticidade: Homogeneidade de variâncias
+
+### Testes de Bartlett e Levene
+
+$$
+H_0:\sigma_1^2=\sigma_2^2=\sigma_3^2=\sigma_4^2=\sigma_5^2
+$$
+$$
+H_1:\text{ pelo menos um } \sigma_i^2 \neq \sigma_j^2
+$$
+
+```{r}
+bartlett.test(residuals(modelo_linear) ~ dados_reg$bloco)
+```
+
+```{r}
+library(car)
+leveneTest(tempo ~ bloco, data = dados_reg)
+```
+
+Ambos os testes não rejeitam a hipótese de homogeneidade de variâncias ao nível de 5% — Bartlett (p = 0,79) e Levene (p = 0,49) — confirmando a suposição de homocedasticidade.
+
+## Adequação do modelo e observações discrepantes
+
+### Outliers
+Toma-se os resíduos padronizados que estão a mais de 2 desvios padrão da média como aqueles correspondentes aos outliers, dado que, em uma distribuição normal, isso corresponde a aproximadamente 5% do total das observações.
+$$
+∣r_i​∣>2
+$$
+
+```{r}
+(outliers <- which(abs(rstandard(modelo_linear)) > 2))
+```
+A observação 20 é outlier. Mas essa informação pode ser complementada com o fato do tempo ser influente, ou não, além de outlier. Verifica-se abaixo.
+
+### Pontos influentes
+Toma-se a distância de Cook como medida de influência de cada observação sobre o ajuste do modelo, onde n é o número de observações e p o número de parâmetros estimados.
+$$
+D_i > \frac{4}{n-p}
+$$
+```{r}
+n <- nrow(dados_reg)
+p <- length(coef(modelo_linear))
+(influentes <- which(cooks.distance(modelo_linear) > 4 / (n - p)))
+```
+As observações 15 e 20 foram identificadas como pontos influentes, ou seja, sua remoção alteraria de forma relevante o ajuste do modelo. Coincidentemente, a observação 20 também foi identificada como outlier, sendo portanto tanto discrepante quanto influente.
+
+```{r}
+dados_reg[influentes, ]
+```
+As observações 15 e 20 correspondem, respectivamente, aos helicópteros de gramatura 75g e 120g com hélice de 7cm. A observação 20 apresentou tempo de queda de 1380ms, valor baixo para uma hélice de 7cm e que contraria a tendência geral de que hélices maiores resultam em maiores tempos de queda. A observação 15, por sua vez, apresentou o maior tempo registrado no experimento (3770ms). Ambas fogem do padrão geral dos dados, o que justifica sua identificação como pontos influentes.
+
+### Gráficos de Diagnóstico
 ```{r}
 par(mfrow = c(2,2))
 plot(modelo_linear)
 ```
 
+Os gráficos de diagnóstico do modelo indicam adequação geral do ajuste. O gráfico de Resíduos vs Ajustados não apresenta padrão sistemático, sem evidências de não linearidade. O gráfico Scale-Location confirma a homocedasticidade, com linha aproximadamente horizontal. O gráfico Q-Q reforça a normalidade dos resíduos. No gráfico de alavancagem, as observações 15 e 20 se destacam e, de fato, são confirmadas como pontos influentes.
 
 # Conclusões
-
-Ressaltar as principais evidências fornecidas pelo experimento.
+O experimento demonstrou como principais evidências: o comprimento da hélice influencia significativamente o tempo de queda do helicóptero de papel. A ANOVA indica efeito significativo do tratamento (p = 0,006), e os testes post-hoc de Tukey e SNK apontam que hélices de 6cm e 7cm resultam em tempos de queda significativamente maiores do que hélices de 3cm. Não só isso, o modelo de regressão linear ajustado confirma essa tendência e estimando um aumento médio de 278ms no tempo de queda para cada centímetro adicional no comprimento da hélice.
+A gramatura do papel também se mostra relevante (p < 0,001), com papéis mais leves resultando em quedas mais lentas, o que justifica a adoção do delineamento em blocos. Os pressupostos do modelo foram atendidos, com exceção da presença das observações 15 e 20, identificadas como pontos influentes, sendo a observação 20 também um outlier — ambas referentes a helicópteros com hélice de 7cm.
