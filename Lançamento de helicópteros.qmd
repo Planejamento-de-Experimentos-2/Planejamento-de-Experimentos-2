@@ -92,7 +92,7 @@ knitr::kable(
 )
 ```
 
-## Modelo BIC.
+# Delineamento em blocos completos inteiramente casualizados.
 
 Para o experimento, foi utilizado o delineamento em blocos completos inteiramente casualizado (BIC) com cinco tratamentos e quatro blocos, pois há um fator de tratamento (comprimento da hélice) e uma fonte de variação que pode interferir no resultado mas que não queremos avaliar (gramatura do papel. Logo, o modelo matemático para o BIC é:
 
@@ -161,9 +161,10 @@ beta <- media_individual_b - mu
                           row.names = NULL))
 ```
 
-## Tabela de Análise de Variância.
+## Cálculos dos componentes da ANOVA.
 
 Utilizando a ANOVA, realizou-se os testes de hipótese a seguir com significância de 5% e demais cálculos:
+
 
 ### Hipóteses:
 
@@ -194,6 +195,10 @@ $$
 $$
 H_1:\text{pelo menos um dos efeitos é diferente de 0}
 $$
+
+Número de tratamentos, blocos e observações
+
+
 ### Graus de liberdade
 
 $$
@@ -224,19 +229,295 @@ N <- t*b
 
 ```
 
+### Soma de quadrados
+
+Soma de quadrados total
+$$
+SQ_{tot} = \sum_{i=1}^{t}\sum_{j=1}^{b}(Y_{ij}-\bar Y_{..})^2
+$$
+```{r}
+(SQ_tot <- sum((tabela_dados - mu)^2))
+```
+Soma de quadrados dos tratamentos
+$$
+SQ_{trat} = b\sum_{i=1}^{t}(\bar Y_{i.}-\bar Y_{..})^2
+$$
+```{r}
+(SQ_trat <- b * sum((media_individual - mu)^2))
+```
+
+Soma de quadrados dos blocos
+
+$$
+SQ_{trat} = t\sum_{i=1}^{b}(\bar Y_{.j}-\bar Y_{..})^2
+$$
+```{r}
+(SQ_bloco <- t * sum((media_individual_b - mu)^2))
+```
+Soma de quadrados dos resíduos
+
+$$
+SQ_{res} = SQ_{tot} - SQ_{trat} - SQ_{bloco}
+$$
+
+```{r}
+(SQ_res <- SQ_tot - SQ_trat - SQ_bloco)
+```
+
+### Quadrados médios
+
+Quadrado médio do tratamento
+
+$$
+QM_{trat} = \frac{SQ_{trat}}{t-1}
+$$
+
+```{r}
+(QM_trat <- SQ_trat/GL_trat)
+```
+Quadrado médio do bloco
+
+$$
+QM_{bloco} = \frac{SQ_{bloco}}{b-1}
+$$
+
+```{r}
+(QM_bloco <- SQ_bloco/GL_bloco)
+```
+
+### Quadrado médio do resíduo
+
+$$
+QM_{res} = \frac{SQ_res}{N-t}
+$$
+
+```{r}
+(QM_res <- SQ_res/GL_res)
+```
+
+### Estatística de teste F
+
+Estatística de teste F para o tratamento
+$$
+F0 = \frac{QM_{Trat}}{QM_{res}}
+$$
+
+```{r}
+(F0 <- QM_trat/QM_res)
+```
+
+Estatística de teste F para o bloco
+
+$$
+F0 = \frac{QM_{Bloco}}{QM_{res}}
+$$
+
+```{r}
+(F0b <- QM_bloco/QM_res)
+```
+### P-valor
+
+P-valor para o tratamento
+$$
+p-valor=P(F_{{GL_{trat}​,GL_{res}}} ​​≥F0​)
+$$
+```{r}
+(1 - pf(F0, GL_trat, GL_res))
+```
+P-valor para o bloco
+$$
+p-valor=P(F_{{GL_{bloco}​,GL_{res}}} ​​≥F0​)
+$$
+```{r}
+(1 - pf(F0b, GL_bloco, GL_res))
+```
+## Tabela da Análise de Variância
+
+Apesar do cálculo de cada termo em separado, é possível calcular diretamente os resultados para a tabela da ANOVA:
+
+```{r}
+dados_anova <- data.frame(
+  bloco = factor(rep(rownames(dados), each = ncol(dados))),
+  tratamento = factor(rep(colnames(dados), times = nrow(dados))),
+  tempo = as.vector(t(dados))
+)
+dados_anova
+
+
+
+anova <- aov(tempo ~ tratamento + bloco, dados_anova)
+
+summary(anova)
+```
+
+```{r}
+#| echo: false
+tabela_anova <- as.data.frame(summary(anova)[[1]])
+rownames(tabela_anova) <- c(
+"Tratamento",
+"Bloco",
+"Resíduos"
+)
+colnames(tabela_anova) <- c(
+"GL",
+"SQ",
+"QM",
+"F",
+"p_valor"
+)
+
+knitr::kable(tabela_anova
+  ,
+  caption = "Tabela de análise de variâncias"
+)
+
+```
+
+#### Conclusões
+
+Teste de hipótese do tratamento <br>
+
+De modo a concluir o teste, após a construção da tabela ANOVA, verificamos o valor F0 do tratamento calculado, 6,22, em relação ao valor tabelado de F, dado por:
+
+```{r}
+(qf(0.95, 4, 12))
+```
+
+Com isso, é possível concluir que F0 \> F, já que 6,22 \> 3,26, rejeitando a hipótese nula ao nível de significância de 5%, isto é, há evidências de que pelo menos uma das médias é diferente das demais. Logo, há indícios de **efeito significativo do comprimento da hélice sob o tempo de queda do helicóptero**.
+
+
+Teste de hipótese do bloco <br>
+
+Já para o bloco, o valor F0 do bloco calculado foi de 19,13, em relação ao valor tabelado de F, dado por:
+
+```{r}
+(qf(0.95, 3, 12))
+```
+Com isso, é possível concluir que F0 \> F, já que 19,13 \> 3,49, rejeitando a hipótese nula ao nível de significância de 5%, isto é, há evidências de que pelo menos um dos efeitos do bloco é diferente de zero. Logo, há indícios de efeito significativo da gramatura do papel sob o tempo de queda do helicóptero. Isto é, **a blocagem pela gramatura foi eficaz**.
+
 ## Testes post-hoc
+tukey
 
 # Resultados e discussões
+```{r}
+boxplot(tempo ~ tratamento,
+        data = dados_anova,
+        xlab = "Tratamento",
+        ylab = "Tempo")
 
-Apresentação e discussão dos achados. Deve apresentar o código R, os resultados e a discussão desse resultado. A discussão e conclusões devem ser feitas de modo que alguém que não seja da área entenda.
+matplot(t(dados),
+        type = "b",
+        pch = 19,
+        lty = 1,
+        xlab = "Tratamento",
+        ylab = "Tempo",
+        main = "Análise dos tratamento por bloco")
 
-Análise Exploratória: Discutir as tendências observadas e observando se os pressupostos podem ser atendidos/violados. Fazer gráficos apropriados para extrair percepções.
+legend("topleft",
+       legend = rownames(dados),
+       col = 1:4,
+       lty = 1,
+       pch = 19)
+```
+# Exame dos pressupostos do modelo
+
+Para verificar se o modelo foi ajustado adequadamente, é necessário checar as suposições que envolvem as variáveis de erro, ou seja, verificar os resíduos. Para tal, são testadas:
+
+### Homogeneidade de variâncias
+
+A verificação da suposição de homogeneidade de variâncias para o erro foi feita a partir dos testes de Bartlett e Levene. <br>
+
+#### Teste de hipótese de Bartlett
+
+$$
+H_0:\sigma_1^2=\sigma_2^2=\sigma_3^2=\sigma_4^2=\sigma_5^2
+$$
+
+$$
+H_1:\text{ pelo menos um } \sigma_i^2 \neq \sigma_j^2 \text{ ,i =1,...,t}
+$$
+
+```{r}
+modelo <- aov(tempo ~ tratamento + bloco, data = dados_anova)
+
+bartlett.test(residuals(modelo) ~ dados_anova$tratamento)
+```
+
+Dada a significância de 0.05 e o p-valor 0.09416, não rejeitamos a hipótese nula, pois 0.094 \> 0.05. Isto é, **não há evidências de que as variâncias dos erros sejam heterogêneas**. Conclui-se que a suposição de homogeneidade de variâncias foi satisfeita pelo teste de Bartlett.
+
+#### Teste de hipótese de Levene
+
+$$
+H_0:\sigma_1^2=\sigma_2^2=\sigma_3^2=\sigma_4^2=\sigma_5^2
+$$
+
+$$
+H_1:\text{ pelo menos um } \sigma_i^2 \neq \sigma_j^2 \text{ ,i =1,...,t}
+$$
+
+```{r}
+library(car)
+leveneTest(tempo ~ tratamento, data=dados_anova)
+```
+
+Dada a significância de 0.05 e o p-valor 0.5433, não rejeitamos a hipótese nula, pois 0.5433 \> 0.05. Isto é, **não há evidências de que as variâncias dos erros sejam heterogêneas**. Conclui-se que a suposição de homogeneidade de variâncias também foi satisfeita pelo teste de Levene.
+
+```{r}
+plot(modelo, which = 1)
+```
+
+### Normalidade dos resíduos
+
+A verificação da suposição de normalidade para o erro foi feita a partir do teste de Shapiro-Wilk, já que a amostra é pequena. <br>
+
+Teste de hipótese:
+
+$$
+H_0:\ \varepsilon_{ij} \sim N(0,\sigma^2)
+$$
+
+$$
+H_1:\ \varepsilon_{ij} \not\sim N(0,\sigma^2)
+$$
+
+```{r}
+shapiro.test(residuals(anova))
+```
+
+Dada a significância de 0.05 e o p-valor 0.9824, não rejeitamos a hipótese nula, pois 0.9824 \> 0.05. Isto é, **não há evidências de que o erro não segue uma distribuição normal**. Conclui-se que a suposição de normalidade foi satisfeita.
+
+Visualmente, a satisfação dessa suposição pode ser verificada com base no Gráfico Q-Q pela observação da linha retilínea resultante:
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4
+#| out-width: 100%
+par(bg = "#F7F7F7")
+qqnorm(residuals(modelo),
+       main="Gráfico Q-Q dos resíduos para avaliação da normalidade",
+       xlab = "Quantis teóricos",
+       ylab = "Quantis amostrais dos resíduos",
+        pch = 19, cex = 1.5,          
+       col = "purple")      
+qqline(residuals(modelo),
+       col= "#535353",
+       lwd = 2)
+
+```
 
 Ajuste do Modelo: Ajustar o modelo linear aos dados.
 
+```{r}
+modelo <- lm(tempo ~ tratamento + bloco,
+             data = dados_anova)
+
+summary(modelo)
+anova(modelo)
+```
+
 Apresentação e Interpretação: Apresentar e interpretar os coeficientes do modelo. Fornecer e discutir o quadro de análise de variância (ANOVA), indicando se há efeito significativo do tratamento. Apresentar e discutir a equação obtida com o ajuste.
 
-Análise de Resíduos: Apresentar e discutir a análise de resíduos para examinar a violação dos pressupostos (normalidade, homocedasticidade, violação dos pressupostos (normalidade, homocedasticidade, adequação do modelo, observações discrepantes, etc.).
+Análise de Resíduos: Apresentar e discutir a análise de resíduos para examinar a violação dos pressupostos (normalidade, homocedasticidade, adequação do modelo, observações discrepantes, etc.).
 
 # Conclusões
 
