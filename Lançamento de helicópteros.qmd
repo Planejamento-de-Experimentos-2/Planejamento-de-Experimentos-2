@@ -238,6 +238,7 @@ Soma de quadrados total
 $$
 SQ_{tot} = \sum_{i=1}^{t}\sum_{j=1}^{b}(Y_{ij}-\bar Y_{..})^2
 $$
+
 ```{r}
 (SQ_tot <- sum((tabela_dados - mu)^2))
 ```
@@ -245,6 +246,7 @@ Soma de quadrados dos tratamentos
 $$
 SQ_{trat} = b\sum_{i=1}^{t}(\bar Y_{i.}-\bar Y_{..})^2
 $$
+
 ```{r}
 (SQ_trat <- n_bloco * sum((media_individual - mu)^2))
 ```
@@ -254,6 +256,7 @@ Soma de quadrados dos blocos
 $$
 SQ_{trat} = t\sum_{i=1}^{b}(\bar Y_{.j}-\bar Y_{..})^2
 $$
+
 ```{r}
 (SQ_bloco <- n_trat * sum((media_individual_b - mu)^2))
 ```
@@ -323,7 +326,7 @@ $$
 
 P-valor para o tratamento
 $$
-p-valor=P(F_{{GL_{trat},GL_{res}}} ≥F0)
+p-valor=P(F_{GL_{trat},GL_{res}} ≥F0)
 $$
 
 ```{r}
