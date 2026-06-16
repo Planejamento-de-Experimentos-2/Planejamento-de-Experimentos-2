@@ -567,7 +567,6 @@ Com p-valor de 0,9672, não há evidências de violação da normalidade dos res
 ### Gráfico Q-Q
 
 ```{r}
-par(family = "sans")
 qqnorm(residuals(modelo_linear),
        main = "Gráfico Q-Q dos resíduos",
        xlab = "Quantis teóricos",
