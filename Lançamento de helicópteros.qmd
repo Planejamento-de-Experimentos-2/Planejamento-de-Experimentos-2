@@ -334,7 +334,7 @@ $$
 ```
 P-valor para o bloco
 $$
-p-valor=P(F_{{GL_{bloco},GL_{res}}} ≥F0)
+p-valor=P(F_{GL_{bloco},GL_{res} ≥F0)
 $$
 ```{r}
 (1 - pf(F0b, GL_bloco, GL_res))
