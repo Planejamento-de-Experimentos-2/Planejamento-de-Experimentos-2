@@ -92,6 +92,7 @@ knitr::kable(
 ```
 
 ## Modelo utilizado
+
 ### Delineamento em blocos completos inteiramente casualizados.
 
 Para o experimento, foi utilizado o delineamento em blocos completos inteiramente casualizado (BIC) com cinco tratamentos e quatro blocos, pois há um fator de tratamento (comprimento da hélice) e uma fonte de variação que pode interferir no resultado mas que não deseja-se avaliar (gramatura do papel). 
@@ -317,6 +318,7 @@ $$
 ```{r}
 (F0b <- QM_bloco/QM_res)
 ```
+
 ##### P-valor
 
 P-valor para o tratamento
@@ -334,6 +336,7 @@ $$
 ```{r}
 (1 - pf(F0b, GL_bloco, GL_res))
 ```
+
 ## Tabela da Análise de Variância
 
 Apesar do cálculo de cada termo em separado, é possível calcular diretamente os resultados para a tabela da ANOVA:
@@ -380,6 +383,7 @@ Com isso, é possível concluir que F0 \> F, já que 19,13 \> 3,49, rejeitando a
 ## Testes post-hoc
 
 ### Teste de Tukey
+
 O teste de comparações múltiplas de Tukey propõe identificar quais pares de tratamentos diferem entre si. Considera-se um nível de significância de 5%.
 
 As hipóteses nulas, portanto, consistem na igualdade de médias par a par:
@@ -403,6 +407,7 @@ Com isso, os resultados indicam que os pares 6cm–3cm (p = 0,024) e 7cm–3cm (
 
 
 ### Teste de Student-Newman-Keuls
+
 O teste de Student-Newman-Keuls (SNK) propõe agrupar os tratamentos em classes homogêneas, clusters, identificando quais diferem entre si.
 Considera-se novamente um nível de significância de 5%.
 
@@ -443,6 +448,7 @@ Com isso, os resultados agruparam os tratamentos em classes homogêneas: hélice
 
 
 # Resultados e Discussão
+
 Os resultados indicaram que o comprimento da hélice influencia significativamente o tempo de queda do helicóptero. Em especial, helicópteros com hélices de 6cm e 7cm demoraram significativamente mais para chegar ao chão do que aqueles com hélices de 3cm, como esperado intuitivamente. 
 A gramatura do papel também se mostrou relevante — papéis mais pesados resultaram em quedas mais rápidas, o que justificou a decisão de controlar esse fator no delineamento do experimento.
 
@@ -450,6 +456,7 @@ A gramatura do papel também se mostrou relevante — papéis mais pesados resul
 ## Análise Exploratória
 
 ### Box-plots dos tempos de queda
+
 ```{r}
 cores <- c("#2C3E7A", "#5B7DB1", "#9B2335", "#C96A75", "#C96A90")
 
@@ -463,6 +470,7 @@ boxplot(tempo ~ tratamento,
 O box-plot revela que, de modo geral, um maior tamanho de hélice possui um maior tempo de queda e também maior variabilidade. 
 
 ### Gráfico de perfis
+
 ```{r}
 matplot(base::t(dados),
         type = "b",
@@ -525,7 +533,9 @@ O R² de 0,8696 indica que aproximadamente 87% da variabilidade observada no tem
 $$
 \hat{Y} = 114 + 278 \times \text{Comprimento} + 1640 \times I_{35g} + 1044 \times I_{56g} + 1190 \times I_{75g}
 $$
+
 ### Interpretação dos coeficientes
+
 Para cada aumento de 1 cm no comprimento da hélice, o tempo médio de queda aumenta aproximadamente 278 ms, mantendo-se constante a gramatura. Além disso, para um mesmo comprimento de hélice, papéis de 35g resultam em tempos 1640 ms maiores, 56g em 1044 ms maiores e 75g em 1190 ms maiores. O intercepto de 114 ms representa o tempo esperado para comprimento zero no bloco de referência (120g), sem interpretação direta.
 
 ## ANOVA da Regressão
@@ -555,12 +565,14 @@ shapiro.test(residuals(modelo_linear))
 Com p-valor de 0,9672, não há evidências de violação da normalidade dos resíduos ao nível de 5%.
 
 ### Gráfico Q-Q
+
 ```{r}
+par(family = "sans")
 qqnorm(residuals(modelo_linear),
        main = "Gráfico Q-Q dos resíduos",
        xlab = "Quantis teóricos",
        ylab = "Quantis amostrais dos resíduos",
-       pch = 19, col = "#2C3E7A")
+       pch = 19, col = "#9B2335")
 qqline(residuals(modelo_linear), col = "#535353", lwd = 2)
 ```
 
@@ -591,6 +603,7 @@ Ambos os testes não rejeitam a hipótese de homogeneidade de variâncias ao ní
 ## Adequação do modelo e observações discrepantes
 
 ### Outliers
+
 Toma-se os resíduos padronizados que estão a mais de 2 desvios padrão da média como aqueles correspondentes aos outliers, dado que, em uma distribuição normal, isso corresponde a aproximadamente 5% do total das observações.
 $$
 ∣r_i​∣>2
@@ -619,6 +632,7 @@ dados_reg[influentes, ]
 As observações 15 e 20 correspondem, respectivamente, aos helicópteros de gramatura 75g e 120g com hélice de 7cm. A observação 20 apresentou tempo de queda de 1380ms, valor baixo para uma hélice de 7cm e que contraria a tendência geral de que hélices maiores resultam em maiores tempos de queda. A observação 15, por sua vez, apresentou o maior tempo registrado no experimento (3770ms). Ambas fogem do padrão geral dos dados, o que justifica sua identificação como pontos influentes.
 
 ### Gráficos de Diagnóstico
+
 ```{r}
 par(mfrow = c(2,2))
 plot(modelo_linear)
