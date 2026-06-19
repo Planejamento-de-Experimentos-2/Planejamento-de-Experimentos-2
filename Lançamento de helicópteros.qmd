@@ -643,5 +643,9 @@ plot(modelo_linear)
 Os gráficos de diagnóstico do modelo indicam adequação geral do ajuste. O gráfico de Resíduos vs Ajustados não apresenta padrão sistemático, sem evidências de não linearidade. O gráfico Scale-Location confirma a homocedasticidade, com linha aproximadamente horizontal. O gráfico Q-Q reforça a normalidade dos resíduos. No gráfico de alavancagem, as observações 15 e 20 se destacam e, de fato, são confirmadas como pontos influentes.
 
 # Conclusões
-O experimento demonstrou como principais evidências: o comprimento da hélice influencia significativamente o tempo de queda do helicóptero de papel. A ANOVA indica efeito significativo do tratamento (p = 0,006), e os testes post-hoc de Tukey e SNK apontam que hélices de 6cm e 7cm resultam em tempos de queda significativamente maiores do que hélices de 3cm. Não só isso, o modelo de regressão linear ajustado confirma essa tendência e estimando um aumento médio de 278ms no tempo de queda para cada centímetro adicional no comprimento da hélice.
+O experimento demonstrou como principais evidências: **o comprimento da hélice influencia significativamente o tempo de queda do helicóptero de papel**. A ANOVA indica efeito significativo do tratamento (p = 0,006), e os testes post-hoc de Tukey e SNK apontam que hélices de 6cm e 7cm resultam em tempos de queda significativamente maiores do que hélices de 3cm. Não só isso, o modelo de regressão linear ajustado confirma essa tendência e estimando um aumento médio de 278ms no tempo de queda para cada centímetro adicional no comprimento da hélice.
 A gramatura do papel também se mostra relevante (p < 0,001), com papéis mais leves resultando em quedas mais lentas, o que justifica a adoção do delineamento em blocos. Os pressupostos do modelo foram atendidos, com exceção da presença das observações 15 e 20, identificadas como pontos influentes, sendo a observação 20 também um outlier — ambas referentes a helicópteros com hélice de 7cm.
+
+## Vídeo da realização do experimento
+
+[Batalha dos Helicópteros - YouTube](https://youtu.be/_ppstvdEkbc)
